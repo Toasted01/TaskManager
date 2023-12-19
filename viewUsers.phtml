@@ -1,0 +1,37 @@
+<?php require_once ('Menu.phtml');?>
+    <div>
+        <h1>Current Users: </h1>
+    </div>
+<?php
+$users = new DataSet();
+echo "<table border='1' class='table table-hover'>";//makes the table
+echo "<th scope='col'>Name</th> <th scope='col'>Admin</th> <th scope='col'>Total Tasks</th> <th scope='col'>Edit</th> <th scope='col'>Delete</th>";
+@$row=$users->getUsers();
+for($i=0;$i<count($row);$i++)//cycles through each record and outputs each field individually
+{
+    $userId = $row[$i]->getUser();
+
+    if($i % 2 == 0)
+    {
+        echo"<tr class='table-active'>";
+    }
+    else echo"<tr class='table-active-1'>";
+
+    echo"
+             <td>".$row[$i]->getUser()."</td> 
+             <td>".$row[$i]->getIsAdminText()."</td> 
+             <td>".$row[$i]->getTaskCount()."</td>";
+
+             if($users->currentUser($_SESSION['userID'], $userId) == false)
+             {
+                echo "<td> <form action= 'editUser.php' method = 'get'><input type='hidden' name = 'userId' value='$userId' style = 'text-decoration: none'/><input type='submit' value='Edit'></form> </td> 
+             <td> <form action='deleteUser.php' method = 'get'><input type='hidden' name = 'userId' value='$userId' style = 'text-decoration: none'/><input type='submit' value='Delete'></form> </td> </tr>";
+             }
+             else
+             {
+                echo"<td></td>
+                    <td></td> </tr>";
+             }
+}
+echo"</table>";
+?>

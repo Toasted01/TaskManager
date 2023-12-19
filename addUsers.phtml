@@ -1,0 +1,34 @@
+<?php
+
+require_once ('Menu.phtml');
+require_once ('DataSet.php');
+
+?>
+
+    <body>
+    <form action = "" method = "post">
+        <div class = "container">
+            <label for = "name" class = "logInPage">Username</label>
+            <input type = "text" placeholder = "Enter Unique Username" name = "name" id = "name" required>
+
+            <label for = "password" class = "logInPage">Password</label>
+            <input type = "password" placeholder = "Enter User Password" name = "password" id = "password" required>
+
+            <label for = "isAdmin" class = "logInPage">User Is An Admin?</label>
+            <select name = "isAdmin" id = "isAdmin">
+                <option value = 0>No</option>
+                <option value = 1>Yes</option>
+            </select>
+
+            <button type = "submit" name = "userSubmitButton" id = "userSubmitButton" class="formButton">Submit</button>
+        </div>
+    </form>
+    </body>
+
+<?php
+
+if (isset($_POST["userSubmitButton"])) //checks to see if the submit button has been pressed
+{
+    $task = new DataSet();
+    $task->addUser(($_POST["name"]), ($_POST["password"]), ($_POST["isAdmin"]));
+}

@@ -1,0 +1,112 @@
+.logInPage{
+    font-weight: bold;
+}
+
+.menuIcon{
+    width: 30px;
+    height: 2px;
+    background-color: #51284F;
+    margin: 5px 0;
+}
+
+.menuIconLabel{
+    background-color: #0033cc;
+}
+
+.submissionForm{
+    border: 2px solid #575757;
+    width: 30%;
+    margin: 0 auto;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #51284F;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.container {
+    padding: 16px;
+}
+
+.menu, .section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.menu {
+    background: #D0D0CE;
+    border: 1px solid #a5a5a5;
+    font-family: arial, sans-serif;
+    font-size: 18px;
+}
+.menu li {
+    border-bottom: 1px solid #a5a5a5;
+    padding: 15px 10px;
+}
+.menu li:last-child {
+    border: 0;
+}
+
+.section ul { display: none; }
+
+.section input:checked ~ ul { display: block; }
+
+.section input[type=checkbox] { display: none; }
+
+.section {
+    position: relative;
+    padding-left: 25px !important;
+}
+
+.section ul { margin-top: 10px; }
+
+.section ul li { color: #000000; }
+
+table{
+    width: 100%;
+}
+
+.table-active-1{
+    background-color: #D0D0CE;
+}
+
+.table-active{
+    background-color: #FFFFFF;
+}
+
+th{
+    background-color: #A7ABAA;
+}
+
+.formButton
+{
+    Width: 40%;
+    margin: 10px auto auto;
+    display: block;
+}
+
+input[type=submit]
+{
+    background-color: #51284F;
+    color: #FFFFFF;
+    Width: 100%;
+    height: auto;
+}
+
+.form-group{
+    font-size: large;
+}

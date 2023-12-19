@@ -1,0 +1,86 @@
+<?php require_once ('logout.php');
+
+session_start();
+
+if($_SESSION["admin"] == 1)
+{?>
+
+<head>
+    <link rel = "stylesheet" href = "theme.css"/>
+</head>
+
+<body>
+    <ul class = "menu">
+        <li class = "section">
+            <input type = "checkbox" id = "menu"/>
+            <label for = "menu">
+                <div class = "menuIcon"></div>
+                <div class = "menuIcon"></div>
+                <div class = "menuIcon"></div>
+            </label>
+            <ul>
+                <li class = "section">
+                    <input type = "checkbox" id = "tasks"/>
+                    <label for = "tasks">Tasks</label>
+                    <ul>
+                        <li><a href = "Tasks.php">Current Tasks</a></li>
+                        <li><a href = "pastTasks.php">Previous Tasks</a></li>
+                        <li><a href = "futureTasks.php">Upcoming Tasks</a></li>
+                        <li><a href = "addTask.php">Add A Task</a></li>
+                        <li><a href = "teamTasks.php">View Team Tasks</a></li>
+                    </ul>
+                </li>
+                <li class = "section">
+                    <input type = "checkbox" id = "users"/>
+                    <label for = "users">Users</label>
+                    <ul>
+                        <li><a href = "viewUsers.php">View Users</a></li>
+                        <li><a href = "addUsers.php">Add A New User</a></li>
+                    </ul>
+                </li>
+                <li><a href = "Search.php">Search</a></li>
+                <li><form action = 'logout.php' method = 'post'><button type = "submit" name = "logoutButton" id = "logoutButton">Log Out</button></form></li>
+            </ul>
+        </li>
+    </ul>
+</body>
+
+<?php
+}
+
+else
+{?>
+
+<head>
+    <link rel = "stylesheet" href = "theme.css"/>
+</head>
+
+<body>
+<ul class = "menu">
+    <li class = "section">
+        <input type = "checkbox" id = "menu"/>
+        <label for = "menu">
+            <div class = "menuIcon"></div>
+            <div class = "menuIcon"></div>
+            <div class = "menuIcon"></div>
+        </label>
+        <ul>
+            <li class = "section">
+                <input type = "checkbox" id = "tasks"/>
+                <label for = "tasks">Tasks</label>
+                <ul>
+                    <li><a href = "Tasks.php">Current Tasks</a></li>
+                    <li><a href = "pastTasks.php">Previous Tasks</a></li>
+                    <li><a href = "futureTasks.php">Upcoming Tasks</a></li>
+                    <li><a href = "addTask.php">Add A Task</a></li>
+                    <li><a href = "teamTasks.php">View Team Tasks</a></li>
+                </ul>
+            <li><a href = "Search.php">Search</a></li>
+            <li><form action = 'logout.php' method = 'post'><button type = "submit" name = "logoutButton" id = "logoutButton">Log Out</button></form></li>
+        </ul>
+    </li>
+</ul>
+</body>
+
+<?php
+}

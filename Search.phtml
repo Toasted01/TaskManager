@@ -1,0 +1,29 @@
+<?php require_once('Menu.phtml') ?>
+
+<form action="Output.php" method="post" class="col-lg-2">
+    <fieldset>
+        <div class="form-group">
+            <input type="radio" id="uname" name="choice" value="uname">
+            <label for="uname">User</label><br>
+
+            <input type="radio" id="task" name="choice" value="task">
+            <label for="task">Task</label><br>
+
+            <input type="radio" id="project" name="choice" value="project">
+            <label for="project">Project</label><br>
+
+            <input type="radio" id="category" name="choice" value="category">
+            <label for="category">Tag</label><br>
+
+            <input type="radio" id="startDate" name="choice" value="startDate">
+            <label for="startDate">Start Date</label><br>
+
+            <input type="radio" id="endDate" name="choice" value="endDate">
+            <label for="endDate">End Date</label><br>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="search" placeholder="Search" name="search">
+        </div>
+        <button type="submit" class="btn btn-primary" id="searchButton" name="searchButton">Search</button
+    </fieldset>
+</form>

@@ -1,0 +1,27 @@
+<?php require('Menu.phtml');?>
+<div>
+    <h1>Found tasks: </h1>
+</div>
+<?php
+echo "<h1 class='text-center'>Tasks</h1>";
+echo "<table border='1' class='table table-hover'>";//makes the table
+echo "<th scope='col'>Task</th> <th scope='col'>Category</th> <th scope='col'>Start</th> <th scope='col'>End</th>";
+for($i=0;$i<count($row);$i++)//cycles through each record and outputs each field individually
+{
+    if($i % 2 == 0)
+    {
+        echo"<tr class='table-active'>";
+    }
+    else echo"<tr class='table-active-1'>";
+
+    echo"
+             <td>". $row[$i]->getName() . "</td> 
+             <td>" . $row[$i]->getCategory() . "</td> 
+             <td>" . $row[$i]->getStartDate() . "</td> 
+             <td>" . $row[$i]->getEndDate() . "</td>
+        </tr> 
+";
+}
+echo"</table>";
+
+?>

@@ -1,0 +1,75 @@
+<?php require_once ('Menu.phtml');?>
+    <div>
+        <h1>Upcoming Tasks: </h1>
+    </div>
+<?php
+$items = new TaskDataSet();
+echo "<table border='1' class='table table-hover'>";//makes the table
+echo "<th scope='col'>Task</th> <th scope='col'>Project</th> <th scope='col'>Tag</th> <th scope='col'>Username</th> <th scope='col'>Effort</th> <th scope='col'>Last Updated</th> <th scope='col'>Start</th> <th scope='col'>End</th> <th scope='col'>Join</th>";
+@$row=$items->getTeamTasks($_SESSION["userID"]);
+for($i=0;$i<count($row);$i++)//cycles through each record and outputs each field individually
+    {
+        $joinId = $row[$i]->getTaskId();
+
+        $lastUpdated = $row[$i]->getLastUpdated();
+        $date = date("Y/m/d");
+        $dateCompare = $items->gapBetweenDates($date, $lastUpdated);
+
+        switch($dateCompare)
+        {
+            case 0:
+            case 1:
+                $colour = "00B388";
+                break;
+            case 2:
+            case 3:
+                $colour = "ED8B00";
+                break;
+            default:
+                $colour = "#E30613";
+        }
+
+        if($i % 2 == 0)
+        {
+            echo"<tr class='table-active'>";
+        }
+        else echo"<tr class='table-active-1'>";
+
+        echo"
+         <td>".$row[$i]->getName()."</td> 
+         <td>".$row[$i]->getProject()."</td> 
+         <td>".$row[$i]->getCategory()."</td>
+         <td>".$row[$i]->getUser()."</td> 
+         <td>".$row[$i]->getEffort()."</td>
+         <td style = 'background-color: ".$colour.";'>".$row[$i]->getLastUpdated()."</td>  
+         <td>".$row[$i]->getStartDate()."</td> 
+         <td>".$row[$i]->getEndDate(). "</td>";
+        if($items->taskCheck(($_SESSION['userID']), $joinId) == false)
+        {
+            echo "<td> <form action='joinTask.php' method = 'get'><input type='hidden' name = 'joinId' value='$joinId' style = 'text-decoration: none'/><input type='submit' value='Join'></form> </td> </tr>";//button to join the task
+        }
+        else echo "<td></td></tr>";
+    }
+    echo"</table>";
+?>
+
+<div>
+    <h1>Historic Tasks: </h1>
+</div>
+<?php
+$items = new TaskDataSet();
+echo "<table border='1' class='table table-hover'>";//makes the table
+echo "<th scope='col'>Task</th> <th scope='col'>Project</th> <th scope='col'>Tag</th> <th scope='col'>Start</th> <th scope='col'>End</th>";
+@$row=$items->getOldTeamTasks($_SESSION["userID"]);
+for($i=0;$i<count($row);$i++)//cycles through each record and outputs each field individually
+{
+    echo"<tr class='table-active'>
+             <td>".$row[$i]->getName()."</td> 
+             <td>".$row[$i]->getProject()."</td> 
+             <td>".$row[$i]->getCategory()."</td>
+             <td>".$row[$i]->getStartDate()."</td> 
+             <td>".$row[$i]->getEndDate()."</td> 
+             </tr>";
+}
+echo"</table>";
+?>

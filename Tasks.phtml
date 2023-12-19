@@ -1,0 +1,57 @@
+<?php require_once ('Menu.phtml');?>
+    <div>
+        <h1>Your tasks: </h1>
+    </div>
+<?php
+$items = new TaskDataSet();
+echo "<table border='1' class='table table-hover'>";//makes the table
+echo "<th scope='col'>Task</th> <th scope='col'>Project</th> <th scope='col'>Tag</th> <th scope='col'>Effort</th> <th scope='col'>Last Updated</th> <th scope='col'>Start</th> <th scope='col'>End</th> <th scope='col'>Check In</th> <th scope='col'>Edit</th>";
+@$row=$items->getCurrentUserTasks($_SESSION["userID"]);
+
+if(count($row) == 0)
+{
+    echo"</table>";
+    echo"<h1>No tasks found. You can add tasks through the 'Add A Task' page.</h1>";
+}
+else
+    {
+        for($i=0;$i<count($row);$i++)//cycles through each record and outputs each field individually
+        {
+            $id = $row[$i]->getTaskId();
+            $lastUpdated = $row[$i]->getLastUpdated();
+            $date = date("Y/m/d");
+            $dateCompare = $items->gapBetweenDates($date, $lastUpdated);
+
+            switch($dateCompare)
+            {
+                case 0:
+                case 1:
+                    $colour = "00B388";
+                    break;
+                case 2:
+                case 3:
+                    $colour = "ED8B00";
+                    break;
+                default:
+                    $colour = "#E30613";
+            }
+
+            if($i % 2 == 0)
+            {
+                echo"<tr class='table-active'>";
+            }
+            else echo"<tr class='table-active-1'>";
+
+            echo"
+             <td>".$row[$i]->getName()."</td> 
+             <td>".$row[$i]->getProject()."</td> 
+             <td>".$row[$i]->getCategory()."</td> 
+             <td>".$row[$i]->getEffort()."</td>
+             <td style = 'background-color: ".$colour.";'>".$row[$i]->getLastUpdated()."</td>  
+             <td>".$row[$i]->getStartDate()."</td> 
+             <td>".$row[$i]->getEndDate(). "</td>
+             <td> <form action= 'checkIn.php' method = 'get'><input type='hidden' name = 'id' value='$id' style = 'text-decoration: none'/><input type='submit' value='Check In'></form> </td> 
+             <td> <form action='EditTask.php' method = 'get'><input type='hidden' name = 'id' value='$id' style = 'text-decoration: none'/><input type='submit' value='Edit'></form> </td> </tr>";//button to edit the record
+        }
+        echo"</table>";
+    }

@@ -1,0 +1,26 @@
+<?php require('Menu.phtml') ?>
+
+<?php
+
+$project = new TaskDataSet();
+$row=$project->getTask($_SESSION["ThisItem"]);//gets the record from the database query and assigns it to an object
+echo "<h1 class='text-center'>Current Project: ".$row[0]->getProject()."</h1>";
+
+echo "<h1 class='text-center'>Tasks</h1>";
+echo "<table border='1' class='table table-hover'>";//makes the table
+echo "<th scope='col'>Task</th> <th scope='col'>Category</th> <th scope='col'>Effort</th> <th scope='col'>Start</th> <th scope='col'>End</th>";
+for($i=0;$i<count($row);$i++)//cycles through each record and outputs each field individually
+{
+    echo "<tr class='table-active'>
+             <td>". $row[$i]->getName() . "</td> 
+             <td>" . $row[$i]->getCategory() . "</td> 
+             <td>" . $row[$i]->getEffort() . "</td> 
+             <td>" . $row[$i]->getStartDate() . "</td> 
+             <td>" . $row[$i]->getEndDate() . "</td>
+        </tr> 
+";
+}
+echo"</table>";
+
+
+?>
